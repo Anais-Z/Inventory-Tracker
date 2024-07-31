@@ -75,7 +75,7 @@ export default function Home() {
          alignItems='center' 
          gap={2}
     >
-      <Typography variant="h1"> Inventory Management </Typography>
+
       <Modal
        open ={open}
        onClose={handleClose}
@@ -115,6 +115,13 @@ export default function Home() {
         </Box>
 
       </Modal>
+
+      <Button variant="outlined" onClick={() => {
+        handleOpen()
+      }}
+      > 
+      Add New item
+      </Button>
     
     </Box>
     
