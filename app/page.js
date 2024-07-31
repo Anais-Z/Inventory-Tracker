@@ -31,11 +31,11 @@ export default function Home() {
     if(docSnap.exists()){
        const {quantity} = docSnap.data()
        if(quantity == 1){
-        await delete(docRef)
+        await deleteDoc(docRef)
        }
     }
     else{
-      await setDoc(docRef, {quantity:quantity - 1})
+      await setDoc(docRef, {quantity: quantity - 1})
     }
 
     await updateInventory()
