@@ -150,30 +150,51 @@ export default function Home() {
 
       </Modal>
 
+    <Box  display='flex'
+          flexDirection='row'
+          gap={30}>
+
+      <Box 
+           
+        >
+
+        <TextField 
+            variant='outlined'
+            sx={{ width: '500px', height: '60px',
+              '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'purple', // Default border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'purple', // Hover border color
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'purple', // Focused border color
+            },
+          },
+             }}
+            
+            value={searchBarValue}
+            onChange={(e) =>{
+              setSearchBarValue(e.target.value)
+            }}/>
+
+      </Box>
+
+
+
       <Button variant="outlined" onClick={() => {
         handleOpen()
-      }}
+        }}
       > 
       Add New item
       </Button>
 
-      <Box border="1px solid #555"
-      bgcolor="#ADD8E6"
-      width='800px'
-      height='100px'>
-        <TextField 
-        variant='outlined'
-            fullWidth
-            value={searchBarValue}
-            onChange={(e) =>{
-              setSearchBarValue(e.target.value)
-            }}
-            />
       </Box>
 
       <Box border="1px solid #333">
         <Box
-        width='800px'
+        width='1200px'
         height='100px'
         bgcolor='#ADD8E6'>
 
@@ -181,7 +202,7 @@ export default function Home() {
           variant="h2" 
           color="#333"
           display='flex'
-          justifyContent='center'
+          justifyContent='Your Pantry'
           alignItems='center'>
             Inventory Items
           </Typography>
