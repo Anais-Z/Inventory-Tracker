@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import {firestore} from '@/firebase'
 import { Box, Modal, Stack, TextField, Typography, Button } from "@mui/material";
-import { collection, query, getDocs, doc } from "firebase/firestore";
+import { collection, query, getDocs, doc, setDoc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
 
 export default function Home() {
   const [inventory, setInventory] = useState([])
@@ -31,7 +31,7 @@ export default function Home() {
 
     if(docSnap.exists()){
        const {quantity} = docSnap.data()
-      await setDoc(docRef, {quantity: quantity + 1})
+      await updateDoc(docRef, {quantity: quantity + 1})
     }
     else{
       await setDoc(docRef, {quantity: 1})
@@ -44,16 +44,20 @@ export default function Home() {
   const removeItem = async (item) => {
     const docRef = doc(collection(firestore, 'inventory'), item)
     const docSnap = await getDoc(docRef)
+    console.log('check')
 
     if(docSnap.exists()){
        const {quantity} = docSnap.data()
+       console.log(`${item} checks`)
        if(quantity == 1){
         await deleteDoc(docRef)
        }
+       else{
+        await updateDoc(docRef, {quantity: quantity - 1})
+      
+      }
     }
-    else{
-      await setDoc(docRef, {quantity: quantity - 1})
-    }
+   
 
     await updateInventory()
   }
@@ -72,6 +76,7 @@ export default function Home() {
          height='100vh' 
          display='flex' 
          justifyContent='center' 
+         flexDirection='column'
          alignItems='center' 
          gap={2}
     >
@@ -122,7 +127,51 @@ export default function Home() {
       > 
       Add New item
       </Button>
+
+      <Box border="1px solid #333">
+        <Box
+        width='800px'
+        height='100px'
+        bgcolor='#ADD8E6'>
+
+          <Typography 
+          variant="h2" 
+          color="#333"
+          display='flex'
+          justifyContent='center'
+          alignItems='center'>
+            Inventory Items
+          </Typography>
+        </Box>
+
+      
+
+      <Stack width='800px' height='300px' spacing={2} overflow='auto'>
+      {inventory.map(({name, quantity}) =>(
+            <Box key={name} width="100%" minHeight="150px" display="flex"
+            alignItems="center" justifyContent="space-between" bgColor="#f0f0f0"
+            padding={5}>
+
+              <Typography variant='h3' color='#333' textAlign="center">
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+              </Typography>
+
+              <Typography variant='h3' color='#333' textAlign="center">
+                {quantity}
+              </Typography>
+
+              <Button variant="contained"
+              onClick={() => {
+                removeItem(name)
+              }}>
+                Remove
+              </Button>
+            </Box>
+      ))
+      }
+      </Stack>
     
+      </Box>
     </Box>
     
   );
