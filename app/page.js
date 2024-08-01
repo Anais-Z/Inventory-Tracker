@@ -162,7 +162,8 @@ export default function Home() {
 
               <Stack direction="row" spacing={2}>
 
-              <Button variant="contained"
+              <Button 
+              variant="contained"
               onClick={() => {
                 addItem(name)
               }}>
@@ -170,6 +171,7 @@ export default function Home() {
               </Button>
 
               <Button variant="contained"
+              sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}
               onClick={() => {
                 removeItem(name)
               }}>
