@@ -204,48 +204,66 @@ export default function Home() {
           display='flex'
           justifyContent='Your Pantry'
           alignItems='center'>
-            Inventory Items
+            Your Pantry
           </Typography>
         </Box>
 
       
 
-      <Stack width='800px' height='300px' spacing={2} overflow='auto'>
-      {inventory.map(({name, quantity}) =>(
-            <Box key={name} width="100%" minHeight="150px" display="flex"
-            alignItems="center" justifyContent="space-between" bgColor="#f0f0f0"
-            padding={5}>
+        <Stack width='1200px' height='300px' spacing={2} overflow='auto'>
+      {inventory.map(({ name, quantity }) => (
+        <Box 
+          key={name} 
+          width="100%" 
+          minHeight="150px" 
+          display="flex"
+          alignItems="center" 
+          justifyContent="space-between" 
+          bgcolor="#f0f0f0"
+          padding={2}
+        >
+          <Typography 
+            variant='h5' 
+            color='#333' 
+            textAlign="center"
+            sx={{ flexBasis: '33.33%', textAlign: 'left' }}
+          >
+            {name.charAt(0).toUpperCase() + name.slice(1)}
+          </Typography>
 
-              <Typography variant='h3' color='#333' textAlign="center">
-                {name.charAt(0).toUpperCase() + name.slice(1)}
-              </Typography>
+          <Typography 
+            variant='h5' 
+            color='#333' 
+            textAlign="center"
+            sx={{ flexBasis: '33.33%', textAlign: 'center' }}
+          >
+            {quantity}
+          </Typography>
 
-              <Typography variant='h3' color='#333' textAlign="center">
-                {quantity}
-              </Typography>
-
-              <Stack direction="row" spacing={2}>
-
-              <Button 
+          <Stack 
+            direction="row" 
+            spacing={2} 
+            alignItems="center"
+            sx={{ flexBasis: '33.33%', justifyContent: 'flex-end' }}
+          >
+            <Button 
               variant="contained"
-              onClick={() => {
-                addItem(name)
-              }}>
-                Add
-              </Button>
+              onClick={() => addItem(name)}
+            >
+              Add
+            </Button>
 
-              <Button variant="contained"
+            <Button 
+              variant="contained"
               sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}
-              onClick={() => {
-                removeItem(name)
-              }}>
-                Remove
-              </Button>
-              </Stack>
-            </Box>
-      ))
-      }
-      </Stack>
+              onClick={() => removeItem(name)}
+            >
+              Remove
+            </Button>
+          </Stack>
+        </Box>
+      ))}
+    </Stack>
     
       </Box>
     </Box>
