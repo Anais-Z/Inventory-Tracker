@@ -226,7 +226,8 @@ export default function Home() {
             variant='h5' 
             color='#333' 
             textAlign="center"
-            sx={{ flexBasis: '33.33%', textAlign: 'left' }}
+            sx={{ flexBasis: '33.33%', textAlign: 'left' , color: 'secondary.main'}}
+            
           >
             {name.charAt(0).toUpperCase() + name.slice(1)}
           </Typography>
