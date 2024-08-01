@@ -192,7 +192,7 @@ export default function Home() {
 
       </Box>
 
-      <Box border="1px solid #333">
+      <Box >
         <Box
         width='1200px'
         height='100px'
@@ -215,11 +215,11 @@ export default function Home() {
         <Box 
           key={name} 
           width="100%" 
-          minHeight="150px" 
+          minHeight="100px" 
           display="flex"
           alignItems="center" 
           justifyContent="space-between" 
-          bgcolor="#f0f0f0"
+          sx={{ borderUp: 1, borderBottom: 1, borderColor: 'grey.500'}}
           padding={2}
         >
           <Typography 
