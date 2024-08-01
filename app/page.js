@@ -10,6 +10,12 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [itemName, setItemName] = useState('')
 
+  //this is use to represent the complete inventory (mainly used for search bar)
+  const [completeInventory, setCompleteInventory] = useState([])
+
+  //this represent the value in the search bar
+  const [searchBarValue, setSearchBarValue] = useState("")
+
   const updateInventory = async () => {
     const snapshot = query(collection(firestore, 'inventory'))
     const docs = await getDocs(snapshot)
@@ -21,6 +27,7 @@ export default function Home() {
       })
     })
     setInventory(inventoryList)
+    setCompleteInventory(inventoryList)
  
   }
 
@@ -62,9 +69,31 @@ export default function Home() {
     await updateInventory()
   }
 
+  //search item function
+  const searchItem = (searchBarValue) => {
+
+    if(searchBarValue == "")
+      {
+        setInventory(completeInventory)
+      }
+      else{
+       
+        //search through every object in list
+        const filtered = completeInventory.filter( (item) => item.name.toLowerCase().includes(searchBarValue.toLowerCase()) )
+        //if the name contains anything from the search bar value, add it to the setInventory
+  
+        setInventory(filtered)
+      }
+  }
+
   useEffect(() => {
     updateInventory()
   },[])
+
+  // This will update value whenever searchBarValue changes
+  useEffect(() => {
+    searchItem(searchBarValue)
+  }, [searchBarValue]);
 
 
   //modals
@@ -127,6 +156,20 @@ export default function Home() {
       > 
       Add New item
       </Button>
+
+      <Box border="1px solid #555"
+      bgcolor="#ADD8E6"
+      width='800px'
+      height='100px'>
+        <TextField 
+        variant='outlined'
+            fullWidth
+            value={searchBarValue}
+            onChange={(e) =>{
+              setSearchBarValue(e.target.value)
+            }}
+            />
+      </Box>
 
       <Box border="1px solid #333">
         <Box
