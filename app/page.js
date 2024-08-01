@@ -242,7 +242,7 @@ export default function Home() {
 
           <Stack 
             direction="row" 
-            spacing={2} 
+            spacing={10} 
             alignItems="center"
             sx={{ flexBasis: '33.33%', justifyContent: 'flex-end' }}
           >
