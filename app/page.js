@@ -152,6 +152,7 @@ export default function Home() {
 
     <Box  display='flex'
           flexDirection='row'
+          alignContent="flex-start"
           gap={30}>
 
       <Box 
@@ -160,7 +161,7 @@ export default function Home() {
 
         <TextField 
             variant='outlined'
-            sx={{ width: '500px', height: '60px',
+            sx={{ width: '800px', height: '60px',
               '& .MuiOutlinedInput-root': {
             '& fieldset': {
               borderColor: 'purple', // Default border color
@@ -195,17 +196,28 @@ export default function Home() {
       <Box >
         <Box
         width='1200px'
-        height='100px'
-        bgcolor='#ADD8E6'>
+        height='50px'
+        sx={{ borderUp: 1, borderBottom: 1, borderColor: 'grey.500'}}
+        display="flex"
+        flexDirection="row"
+        
+        gap={63}>
 
           <Typography 
-          variant="h2" 
+          variant="h5" 
           color="#333"
-          display='flex'
-          justifyContent='Your Pantry'
-          alignItems='center'>
-            Your Pantry
+          textAlign="center"
+            sx={{ marginLeft: "15px"}}>
+           Item
           </Typography>
+
+          <Typography 
+          variant="h5" 
+          color="#333"
+          display='flex'>
+            Quantity
+          </Typography>
+
         </Box>
 
       
@@ -226,7 +238,7 @@ export default function Home() {
             variant='h5' 
             color='#333' 
             textAlign="center"
-            sx={{ flexBasis: '33.33%', textAlign: 'left' , color: 'secondary.main'}}
+            sx={{ flexBasis: '35.33%', textAlign: 'left' , color: 'secondary.main'}}
             
           >
             {name.charAt(0).toUpperCase() + name.slice(1)}
