@@ -150,6 +150,13 @@ export default function Home() {
 
       </Modal>
 
+      <Typography 
+      variant="h4"
+      
+      >
+        Your Pantry
+      </Typography>
+
     <Box  display='flex'
           flexDirection='row'
           alignContent="flex-start"
