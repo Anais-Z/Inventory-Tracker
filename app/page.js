@@ -9,6 +9,11 @@ export default function Home() {
   const [inventory, setInventory] = useState([])
   const [open, setOpen] = useState(false)
   const [itemName, setItemName] = useState('')
+  const [lquery, setLQuery] = useState('chicken orange')
+
+  const APP_ID ='d9713b45'
+  const APP_KEY = 'b2e947cc636d656d2a29673fc022f55e'
+  const [recipes, setRecipes] = useState([])
 
   //this is use to represent the complete inventory (mainly used for search bar)
   const [completeInventory, setCompleteInventory] = useState([])
@@ -84,6 +89,23 @@ export default function Home() {
   
         setInventory(filtered)
       }
+  }
+
+  //recipes api function
+  const getRecipes = async () => {
+    const response = await fetch(`https://api.edamam.com/search?q=${lquery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=20&calories=591-722&health=alcohol-free`)
+    const data = await response.json()
+    setRecipes(data.hits)
+    
+    for (const i of recipes) {
+      if (i.recipe) { // Check if i.recipe is defined
+        console.log(i.recipe.label);
+        console.log(i.recipe.calories);
+        console.log(i.recipe.ingredients);
+      } else {
+        console.warn("Missing recipe data", i); // Log a warning for missing recipe data
+      }
+    }
   }
 
   useEffect(() => {
@@ -316,7 +338,20 @@ export default function Home() {
         </Box>
       ))}
     </Stack>
-    
+
+    <Button 
+              variant="contained"
+              sx={{ 
+                color: "red",
+          backgroundColor: "white",
+          border: '2px solid',
+          borderColor: "red",
+          '&:hover': { color: "white", bgcolor: 'red' }
+              }}
+              onClick={() => getRecipes()}
+            >
+              Recipe
+            </Button>
       </Box>
     </Box>
     
