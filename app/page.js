@@ -201,8 +201,17 @@ export default function Home() {
 
 
 
-      <Button variant="outlined" onClick={() => {
+      <Button  onClick={() => {
         handleOpen()
+        }}
+
+        sx={{
+          color: "#5D3FD3",
+          backgroundColor: "white",
+          border: '2px solid',
+          borderColor: "#5D3FD3",
+          '&:hover': { color: "white", bgcolor: '#5D3FD3' }
+          
         }}
       > 
       Add New item
@@ -279,13 +288,26 @@ export default function Home() {
             <Button 
               variant="contained"
               onClick={() => addItem(name)}
+              sx={{ 
+                color: "#0096FF",
+          backgroundColor: "white",
+          border: '2px solid',
+          borderColor: "#0096FF",
+          '&:hover': { color: "white", bgcolor: '#0096FF' }
+              }}
             >
               Add
             </Button>
 
             <Button 
               variant="contained"
-              sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}
+              sx={{ 
+                color: "red",
+          backgroundColor: "white",
+          border: '2px solid',
+          borderColor: "red",
+          '&:hover': { color: "white", bgcolor: 'red' }
+              }}
               onClick={() => removeItem(name)}
             >
               Remove
