@@ -162,32 +162,42 @@ export default function Home() {
           alignContent="flex-start"
           gap={30}>
 
-      <Box 
-           
-        >
+      
 
-        <TextField 
-            variant='outlined'
-            sx={{ width: '800px', height: '60px',
-              '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: '#5D3FD3', // Default border color
-            },
-            '&:hover fieldset': {
-              borderColor: '#5D3FD3', // Hover border color
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: '#5D3FD3', // Focused border color
-            },
-          },
-             }}
-            
-            value={searchBarValue}
-            onChange={(e) =>{
-              setSearchBarValue(e.target.value)
-            }}/>
+<TextField
+  sx={{
+    width: '800px',
+    height: '40px',
+    backgroundColor: "#E6E6FA",
+    '& .MuiOutlinedInput-root': {
+      height: '100%', 
+      '& fieldset': {
+        border: 'none', 
+      },
+      '&:hover fieldset': {
+        border: 'none', 
+      },
+      '&.Mui-focused fieldset': {
+        border: 'none',
+      },
+    },
+    '& .MuiInputBase-input': {
+      height: '100%', 
+      padding: '0 14px', 
+    }, 
+    '& .MuiInputBase-input::placeholder': {
+      color: '#5D3FD3', // Change this to your desired color
+      opacity: 1, // Ensures placeholder color is visible
+    },
+  }}
+  placeholder="Search"
+  value={searchBarValue}
+  onChange={(e) => {
+    setSearchBarValue(e.target.value);
+  }}
+/>
 
-      </Box>
+      
 
 
 
