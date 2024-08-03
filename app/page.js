@@ -171,13 +171,13 @@ export default function Home() {
             sx={{ width: '800px', height: '60px',
               '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'purple', // Default border color
+              borderColor: '#5D3FD3', // Default border color
             },
             '&:hover fieldset': {
-              borderColor: 'purple', // Hover border color
+              borderColor: '#5D3FD3', // Hover border color
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'purple', // Focused border color
+              borderColor: '#5D3FD3', // Focused border color
             },
           },
              }}
@@ -245,7 +245,7 @@ export default function Home() {
             variant='h5' 
             color='#333' 
             textAlign="center"
-            sx={{ flexBasis: '35.33%', textAlign: 'left' , color: 'secondary.main'}}
+            sx={{ flexBasis: '35.33%', textAlign: 'left' , color: '#5D3FD3'}}
             
           >
             {name.charAt(0).toUpperCase() + name.slice(1)}
