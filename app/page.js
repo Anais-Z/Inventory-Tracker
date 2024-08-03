@@ -8,6 +8,7 @@ import { collection, query, getDocs, doc, setDoc, getDoc, deleteDoc, updateDoc }
 export default function Home() {
   const [inventory, setInventory] = useState([])
   const [open, setOpen] = useState(false)
+  const [open2, setOpen2] = useState(false)
   const [itemName, setItemName] = useState('')
   const [lquery, setLQuery] = useState('chicken orange')
 
@@ -121,6 +122,9 @@ export default function Home() {
   //modals
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const handleOpen2 = () => setOpen2(true)
+  const handleClose2 = () => setOpen2(false)
 
   return (
     <Box width="100vw" 
@@ -352,6 +356,24 @@ export default function Home() {
             >
               Recipe
             </Button>
+
+            <Button onClick={handleOpen2}>Open modal</Button>
+
+            <Modal
+  open={open2}
+  onClose={handleClose2}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box>
+    <Typography id="modal-modal-title" variant="h6" component="h2">
+      Text in a modal
+    </Typography>
+    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+    </Typography>
+  </Box>
+</Modal>
       </Box>
     </Box>
     
