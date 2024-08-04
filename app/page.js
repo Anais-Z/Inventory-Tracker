@@ -350,22 +350,18 @@ export default function Home() {
       ))}
     </Stack>
 
-    <Button 
-              variant="contained"
-              sx={{ 
-                color: "red",
-          backgroundColor: "white",
-          border: '2px solid',
-          borderColor: "red",
-          '&:hover': { color: "white", bgcolor: 'red' }
-              }}
-              onClick={() => getRecipes()}
-            >
-              Recipe
-            </Button>
-
+    
             <Button onClick={handleOpen2}
-            >Open modal</Button>
+            sx={{
+              color: "#32CD32",
+              backgroundColor: "white",
+              border: '2px solid',
+              borderColor: "#32CD32",
+              '&:hover': { color: "white", bgcolor: '#32CD32' }
+              
+            }}>
+              Get Recipes
+            </Button>
 
             <Modal
        open ={open2}
