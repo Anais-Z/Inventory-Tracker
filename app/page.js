@@ -391,7 +391,7 @@ export default function Home() {
             <Box>
                <Typography variant="h6">{recipe.recipe.label}</Typography>
                <Typography variant="body2">Calories: {recipe.recipe.calories}</Typography>
-               <img src={`${recipe.recipe.img}`}
+               <img src={`${recipe.recipe.image}`}
                sx={{ width: 500, height: 450 }}/>
               <Typography variant="h5">Ingredients: </Typography>
                <List>
