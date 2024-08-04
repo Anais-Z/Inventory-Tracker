@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import {firestore} from '@/firebase'
-import { Box, Modal, Stack, TextField, Typography, Button } from "@mui/material";
+import { Box, Modal, Stack, TextField, Typography, Button, List } from "@mui/material";
 import { collection, query, getDocs, doc, setDoc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
 
 export default function Home() {
@@ -94,11 +94,11 @@ export default function Home() {
 
   //recipes api function
   const getRecipes = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=${lquery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=20&calories=591-722&health=alcohol-free`)
-    const data = await response.json()
-    setRecipes(data.hits)
-    
-    for (const i of recipes) {
+    const response = await fetch(`https://api.edamam.com/search?q=${lquery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=20&calories=591-722&health=alcohol-free`);
+    const data = await response.json();
+    setRecipes(data.hits);
+
+    for (const i of data.hits) {
       if (i.recipe) { // Check if i.recipe is defined
         console.log(i.recipe.label);
         console.log(i.recipe.calories);
@@ -117,6 +117,13 @@ export default function Home() {
   useEffect(() => {
     searchItem(searchBarValue)
   }, [searchBarValue]);
+
+  //This will activate get recipes function once modal 2 opens 
+  useEffect(() => {
+    if (open2) {
+      getRecipes();
+    }
+  }, [open2]);
 
 
   //modals
@@ -357,23 +364,53 @@ export default function Home() {
               Recipe
             </Button>
 
-            <Button onClick={handleOpen2}>Open modal</Button>
+            <Button onClick={handleOpen2}
+            >Open modal</Button>
 
             <Modal
-  open={open2}
-  onClose={handleClose2}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <Box>
-    <Typography id="modal-modal-title" variant="h6" component="h2">
-      Text in a modal
-    </Typography>
-    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-    </Typography>
-  </Box>
-</Modal>
+       open ={open2}
+       onClose={handleClose2}
+       
+      >
+        <Box
+        position="absolute"
+        top="50%"
+        left="50%"
+        width={900}
+        bgcolor='white'
+        border="2px solid #0001"
+        boxShadow={24}
+        p={4}
+        display='flex'
+        flexDirection='column'
+        gap={3}
+        sx={{
+          transform: "translate(-50%,-50%)"
+        }}
+        >
+          <Typography variant="h6"> Recipes</Typography>
+          <Stack width='1200px' height='300px' spacing={2} overflow='auto'>
+            
+           {recipes.map((recipe, index) => (
+            <Box>
+               <Typography variant="h6">{recipe.recipe.label}</Typography>
+               <Typography variant="body2">Calories: {recipe.recipe.calories}</Typography>
+               <img src={`${recipe.recipe.img}`}
+               sx={{ width: 500, height: 450 }}/>
+              <Typography variant="h5">Ingredients: </Typography>
+               <List>
+               {recipe.recipe.ingredients.map(ingredient => (
+                    <Typography> - {ingredient.text}</Typography>
+                ))}
+               </List>
+            </Box>
+           ))}
+            
+            
+          </Stack>
+        </Box>
+
+      </Modal>
       </Box>
     </Box>
     
