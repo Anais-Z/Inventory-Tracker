@@ -10,7 +10,7 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
   const [itemName, setItemName] = useState('')
-  const [lquery, setLQuery] = useState('chicken orange')
+  const [lquery, setLQuery] = useState('')
 
   const APP_ID ='d9713b45'
   const APP_KEY = 'b2e947cc636d656d2a29673fc022f55e'
@@ -121,9 +121,24 @@ export default function Home() {
   //This will activate get recipes function once modal 2 opens 
   useEffect(() => {
     if (open2) {
-      getRecipes();
+      let foodString = "";
+      for (let i = 0; i < completeInventory.length; i++) {
+        if (completeInventory[i] && completeInventory[i].name) {
+          foodString += completeInventory[i].name + " ";
+        }
+      }
+      console.log('foodString:', foodString); // Log the concatenated string
+      setLQuery(prevQuery => {
+        if (prevQuery !== foodString) {
+          console.log('Setting LQuery:', foodString); // Log when setting the new state
+          return foodString;
+        }
+        return prevQuery; // Return the previous state if it's the same to prevent re-render
+      });
+
+      getRecipes()
     }
-  }, [open2]);
+  }, [open2, completeInventory]);
 
 
   //modals
