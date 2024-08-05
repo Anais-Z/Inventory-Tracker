@@ -408,12 +408,6 @@ export default function Home() {
                <Typography variant="body2">Calories: {recipe.recipe.calories}</Typography>
                <img src={`${recipe.recipe.image}`}
                sx={{ width: 500, height: 450 }}/>
-              <Typography variant="h5">Ingredients: </Typography>
-               <List>
-               {recipe.recipe.ingredients.map((ingredient, index) => (
-                    <Typography key={index}> - {ingredient.text}</Typography>
-                ))}
-               </List>
             </Box>
            ))}
             
