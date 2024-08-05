@@ -403,7 +403,7 @@ export default function Home() {
           <Stack width='1200px' height='300px' spacing={2} overflow='auto'>
             
            {recipes.map((recipe, index) => (
-            <Box>
+            <Box key={index}>
                <Typography variant="h6">{recipe.recipe.label}</Typography>
                <Typography variant="body2">Calories: {recipe.recipe.calories}</Typography>
                <img src={`${recipe.recipe.image}`}
