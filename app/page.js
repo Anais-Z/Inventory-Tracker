@@ -410,8 +410,8 @@ export default function Home() {
                sx={{ width: 500, height: 450 }}/>
               <Typography variant="h5">Ingredients: </Typography>
                <List>
-               {recipe.recipe.ingredients.map(ingredient => (
-                    <Typography> - {ingredient.text}</Typography>
+               {recipe.recipe.ingredients.map((ingredient, index) => (
+                    <Typography key={index}> - {ingredient.text}</Typography>
                 ))}
                </List>
             </Box>
